@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery | Project</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        button{
+            padding: 0 10px;
+            margin:5px 0;
+        }
+        h1{
+            font-size: larger;
+            font-weight: 200;
+        }
+        img{
+            height: auto;
+            width: 500px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <header>
+            <div class="container">
+                <button>Generate Characters</button>
+            </div>
+        </header>
+        <section class="about">
+            <div class="container">
+                <h1 id="name-el">Character's name:</h1>
+                <img src="" alt="characters'img">
+            </div>
+        </section>
+        
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+        <script>
+             
+            let nameEl = document.getElementById('name-el')
+
+            let imgSrc = document.querySelector('img')
+            
+            $('button').on('click', function(){
+                const $randomNumber = Math.floor(Math.random()*88)
+                
+
+                $.get(`https://akabab.github.io/starwars-api/api/id/${$randomNumber}.json`, function(data){
+                 console.log(data['name'])
+                // console.log(data['image'])
+
+                nameEl.innerHTML = `Character's name:<i>${data['name']}</i>`
+
+                imgSrc.src = data['image']
+                })
+            })
+        </script>
+    </body>
+</body>
+</html>
